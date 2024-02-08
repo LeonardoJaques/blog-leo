@@ -1,8 +1,7 @@
+import { typography } from "./default/typography";
+
 const theme = {
-  typography: {
-    fontFamily: '"Open Sans", sans-serif',
-    fontWeight: "bold"
-  }
+  typography
 };
 
 export default theme;
