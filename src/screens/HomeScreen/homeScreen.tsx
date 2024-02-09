@@ -4,18 +4,31 @@ import Feed from "./patterns/Feed/feed";
 import Footer from "./patterns/Footer/footer";
 import Menu from "./patterns/Menu/menu";
 import Text from "@src/components/Text/text";
+import { useTheme } from "@src/theme/themeProvider";
+import Link from "@src/components/Link/link";
+
 
 
 export default function HomeScreen() {
+  const theme = useTheme();
+
   return (
     <Box
       tag="main"
       styleSheet={{
-        backgroundColor: '#c4c4c4',
+        backgroundColor: theme.colors.neutral.x100,
         flex: 1,
         alignItems: 'center',
       }}
     >
+      <Link colorVariant="negative" href="/about" >
+        sobre
+      </Link>
+      <Link href="https://www.google.com" >
+        google
+      </Link>
+      
+
       <Background />
       <Menu />
       <Feed>
