@@ -18,13 +18,12 @@ export default function Feed({ children}: FeedProps) {
   )
 }
 
-Feed.hearder = function FeedHeader() {
+Feed.Header = function FeedHeader() {
   return (
     <Box>
       <Text>
         Feed Header
       </Text>
-
     </Box>
   )
 }
