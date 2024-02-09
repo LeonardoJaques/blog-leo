@@ -1,5 +1,6 @@
 import Box from "@src/components/Box/box";
-import Text from "@src/components/Text/Text";
+import Text from "@src/components/Text/text";
+import Icon from "@src/components/icon/icon";
 
 
 
@@ -20,7 +21,15 @@ export default function Feed({ children}: FeedProps) {
 
 Feed.Header = function FeedHeader() {
   return (
-    <Box>
+    <Box
+      styleSheet={{
+        color: 'darkred'
+      }}
+    >
+      <Icon name="youtube"/>
+      <Icon name="twitter" />
+      <Icon name="gitHub" />
+      <Icon name="instagram" />
       <Text>
         Feed Header
       </Text>

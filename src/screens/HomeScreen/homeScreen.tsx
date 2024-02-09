@@ -3,7 +3,7 @@ import Background from "./patterns/Background/background";
 import Feed from "./patterns/Feed/feed";
 import Footer from "./patterns/Footer/footer";
 import Menu from "./patterns/Menu/menu";
-import Text from "@src/components/Text/Text";
+import Text from "@src/components/Text/text";
 
 
 export default function HomeScreen() {
@@ -11,7 +11,7 @@ export default function HomeScreen() {
     <Box
       tag="main"
       styleSheet={{
-        backgroundColor: 'grey',
+        backgroundColor: '#c4c4c4',
         flex: 1,
         alignItems: 'center',
       }}
