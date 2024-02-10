@@ -1,12 +1,11 @@
 ---
 date: "2024-02-15T00:00:00-07:00"
 title: "Me desafiando a criar conteudo."
-image: "https://source.unsplash.com/random/800x600"
 url: "https://www.linkedin.com/in/leonardojaques-dev/"
 excerpt: "Abrindo novos caminhos"
 tags: 
   - emprego-novo
-  - projeto-x 
+  - projeto-y 
 ---
 
 # A Raposa e o Corvo

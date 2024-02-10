@@ -9,6 +9,8 @@ export interface Post {
     excerpt: string;
     tags: string[];
   }
+
+  image?: string;
   slug: string; // identificador único do post
   title: string;
   content: string;
@@ -31,6 +33,7 @@ export default function PostsService() {
           },
           slug: postFileName.replace('.md', ''),
           title: data.title,
+          image: data.image || "",
           content,
         }
         return post;

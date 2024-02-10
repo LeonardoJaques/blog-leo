@@ -24,9 +24,8 @@ export default function Feed({ children }: FeedProps) {
         width: '100%',
         maxWidth: '683px',
         borderRadius: '8px',
-        paddingVertical: '40px',
+        paddingTop: '40px',
         paddingHorizontal: '32px',
-
       }}
     >
       {children}
@@ -158,7 +157,13 @@ interface FeedPostsProps {
 Feed.Posts = function FeedPosts({ posts }: FeedPostsProps) {
   return (
     <Box>
-      {posts.map(({ title, slug, metadata, content }) => {
+      <Text tag="h2" variant="heading4" styleSheet={{
+        marginBottom: '32px',
+
+      }}>
+        Últimos posts
+      </Text>
+      {posts.map(({ title, slug, metadata, content, image }) => {
         const { date, excerpt, tags, url } = metadata
         return (
           <FeedPost
@@ -168,6 +173,7 @@ Feed.Posts = function FeedPosts({ posts }: FeedPostsProps) {
             excerpt={excerpt}
             tags={tags}
             url={url}
+            image={image}
           />
         )
       })}

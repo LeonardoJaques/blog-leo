@@ -12,8 +12,6 @@ interface HomeScreenProps {
 }
 function HomeScreen(props: HomeScreenProps) {
   const theme = useTheme();
-  console.log('props', props);
-
   return (
     <Box
       tag="main"
