@@ -5,10 +5,14 @@ import Footer from "./patterns/Footer/footer";
 import Menu from "./patterns/Menu/menu";
 import { useTheme } from "@src/theme/themeProvider";
 import templatePageHOC from "@src/services/template/templatePageHOC";
+import type { Post } from "@src/services/posts/postsService";
 
-
-function HomeScreen() {
+interface HomeScreenProps {
+  posts: Post[];
+}
+function HomeScreen(props: HomeScreenProps) {
   const theme = useTheme();
+  console.log('props', props);
 
   return (
     <Box
@@ -23,6 +27,7 @@ function HomeScreen() {
       <Menu />
       <Feed>
         <Feed.Header />
+        <Feed.Posts posts={props.posts} />
       </Feed>
       <Footer />
     </Box>

@@ -6,6 +6,8 @@ import { useTheme } from "@src/theme/themeProvider";
 import { useTemplateConfig } from "@src/services/template/templateConfigContext";
 import Link from "@src/components/Link/link";
 import Icon from "@src/components/Icon/icon";
+import type { Post } from "@src/services/posts/postsService";
+import { FeedPost } from "./patterns/feedPost";
 
 
 interface FeedProps {
@@ -144,27 +146,31 @@ Feed.Header = function FeedHeader() {
           return null;
 
         })}
-
-
-
       </Box>
-
-      {/* <Link href="https://www.youtube.com/@LeonardoJaquesDev" >
-        <Icon name="youtube" size="md" />
-      </Link>
-      <Icon name="twitter" />
-      <Icon name="gitHub" />
-      <Icon name="instagram" /> */}
     </Box>
   )
 }
 
-Feed.Posts = function FeedPosts() {
+interface FeedPostsProps {
+  posts: Post[];
+
+}
+Feed.Posts = function FeedPosts({ posts }: FeedPostsProps) {
   return (
     <Box>
-      <Text>
-        Feed Posts
-      </Text>
+      {posts.map(({ title, slug, metadata, content }) => {
+        const { date, excerpt, tags, url } = metadata
+        return (
+          <FeedPost
+            key={slug}
+            title={title}
+            date={date}
+            excerpt={excerpt}
+            tags={tags}
+            url={url}
+          />
+        )
+      })}
     </Box>
   )
 }

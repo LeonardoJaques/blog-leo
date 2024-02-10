@@ -10,24 +10,25 @@ const iconSizes = {
   xl: '36px',
 } as const;
 
-interface IconProps { 
+interface IconProps {
   name?: keyof typeof icons;
   styleSheet?: StyleSheet;
   size?: keyof typeof iconSizes;
 }
 
-export default function Icon({ name, size, ...props }: IconProps) {
+export default function Icon({ name, size, styleSheet, ...props }: IconProps) {
   const CurrentIcon = icons[name] || icons._default_icon;
   return (
     <BaseComponent
       as="svg"
       styleSheet={{
-        width:iconSizes[size],
+        width: iconSizes[size],
         height: iconSizes[size],
+        ...styleSheet,
       }}
-      viewBox= "0 0 24 24"
-      color= "inherit"
-      fill= "currentColor"
+      viewBox="0 0 24 24"
+      color="inherit"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
