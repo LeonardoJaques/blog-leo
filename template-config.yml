@@ -1,0 +1,13 @@
+site: 
+  title: "Leonardo Jaques - dev-diary"
+  description: "Be welcome to my dev-diary. Here I share my thoughts, experiences and knowledge about software development."
+personal: 
+  name: "Leonardo Jaques"
+  avatar: "https://github.com/leonardojaques.png"
+  avatarAlt: "Foto do rosto de Leonardo Jaques"    
+  email: "jaques.projetos@outlook.com"
+  socialNetworks: 
+    youtube: "https://www.youtube.com/@LeonardoJaquesDev"
+    gitHub: "https://github.com/leonardojaques"
+    linkedin: "https://www.linkedin.com/in/leonardojaques-dev/"
+    twitter: "https://twitter.com/Lajaques"  

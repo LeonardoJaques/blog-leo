@@ -1,10 +1,11 @@
 import Box from "@src/components/Box/box";
 import Text from "@src/components/Text/text";
-import Icon from "@src/components/Icon/icon";
 import Image from "@src/components/Image/image";
-import Link from "@src/components/Link/link";
 import Button from "@src/components/Button/button";
 import { useTheme } from "@src/theme/themeProvider";
+import { useTemplateConfig } from "@src/services/template/templateConfigContext";
+import Link from "@src/components/Link/link";
+import Icon from "@src/components/Icon/icon";
 
 
 interface FeedProps {
@@ -33,6 +34,7 @@ export default function Feed({ children }: FeedProps) {
 
 Feed.Header = function FeedHeader() {
   const theme = useTheme();
+  const templateConfig = useTemplateConfig();
   return (
     <Box
       styleSheet={{
@@ -49,7 +51,8 @@ Feed.Header = function FeedHeader() {
         }}
 
       >
-        <Image src="https://github.com/leonardojaques.png" alt="imagem do perfil do Leonardo Jaques"
+
+        <Image src={templateConfig.personal.avatar} alt={templateConfig.personal.avatarAlt}
           styleSheet={{
             width: { xs: '64px', sm: '80px', md: '96px', lg: '112px', xl: '128px' },
             height: { xs: '64px', sm: '80px', md: '96px', lg: '112px', xl: '128px' },
@@ -112,9 +115,40 @@ Feed.Header = function FeedHeader() {
       </Box>
       <Button.Base href="https://github.com/leonardojaques">
         <Text tag="h1" variant="heading4">
-          Leonardo Jaques
+          {templateConfig?.personal?.name}
         </Text>
       </Button.Base>
+
+      <Box
+        styleSheet={{
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          gap: '4px',
+          marginBottom: '5px',
+        }}
+      >
+
+        {Object.keys(templateConfig.personal.socialNetworks).map((key) => {
+          const socialNetwork = templateConfig.personal.socialNetworks[key];
+          if (socialNetwork) {
+            return (
+              <Link
+                key={key}
+                target="_blank"
+                href={socialNetwork}
+              >
+                <Icon name={key as any} />
+              </Link>
+            )
+          }
+          return null;
+
+        })}
+
+
+
+      </Box>
+
       {/* <Link href="https://www.youtube.com/@LeonardoJaquesDev" >
         <Icon name="youtube" size="md" />
       </Link>

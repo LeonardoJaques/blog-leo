@@ -3,13 +3,11 @@ import Background from "./patterns/Background/background";
 import Feed from "./patterns/Feed/feed";
 import Footer from "./patterns/Footer/footer";
 import Menu from "./patterns/Menu/menu";
-import Text from "@src/components/Text/text";
 import { useTheme } from "@src/theme/themeProvider";
-import Link from "@src/components/Link/link";
+import templatePageHOC from "@src/services/template/templatePageHOC";
 
 
-
-export default function HomeScreen() {
+function HomeScreen() {
   const theme = useTheme();
 
   return (
@@ -21,23 +19,16 @@ export default function HomeScreen() {
         alignItems: 'center',
       }}
     >
-
-
       <Background />
       <Menu />
       <Feed>
         <Feed.Header />
       </Feed>
       <Footer />
-      {/* <Menu />
-      <Feed>
-        <Feed.Header />
-        <Text tag="h1" variant="display1">
-          Últimas Atualizações
-        </Text>
-        <Feed.Posts />
-      </Feed>
-      <Footer /> */}
     </Box>
   )
 }
+
+export default templatePageHOC(HomeScreen, {
+  title: 'Home',
+}); 

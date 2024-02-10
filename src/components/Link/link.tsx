@@ -7,6 +7,7 @@ import { useTheme } from '@src/theme/themeProvider';
 
 interface LinkProps {
   href: string;
+  target?: string;
   children: React.ReactNode;
   styleSheet?: StyleSheet;
   variant?: ThemeTypographyVariants;
@@ -17,67 +18,68 @@ const Link = React.forwardRef(
   ({
     children,
     href,
+    target,
     styleSheet,
     colorVariant,
     colorVariantEnabled,
     ...props
   }: LinkProps, ref) => {
-  const isIExternalLink = href.startsWith('http') || href.startsWith('https') || href.startsWith('www');
-    
-  const theme = useTheme();
-  const currentColorSet = {
-    color: theme.colors[colorVariant].x500,
-    hover: {
-      color: theme.colors[colorVariant].x400,
-    },
-    focus: {
-      color: theme.colors[colorVariant].x600,
-    }
-  };
+    const isIExternalLink = href.startsWith('http') || href.startsWith('https') || href.startsWith('www');
 
-  const linkProps = {
-    tag: 'a',
-    ref,
-    children,
-    href,
-    styleSheet: {
-      textDecoration: 'none',
-      ...colorVariantEnabled && {
-        color: currentColorSet.color,
-      },
+    const theme = useTheme();
+    const currentColorSet = {
+      color: theme.colors[colorVariant].x500,
       hover: {
-        ...styleSheet?.hover,
-        ...colorVariantEnabled && {
-        color: currentColorSet.hover.color,
-      },
+        color: theme.colors[colorVariant].x400,
       },
       focus: {
-        ...styleSheet?.focus,
-        ...colorVariantEnabled && {
-        color: currentColorSet.focus.color,
-      },
-    },
-      ...styleSheet,
-    },
-    legacyBehavior: true,
-    ...props,
-  }
-    if (isIExternalLink) return (  
-    <Text 
-      {...{
-        target: '_blank',
-        ...linkProps,
-      }}
-    />
-  )
-  
+        color: theme.colors[colorVariant].x600,
+      }
+    };
 
-  return (
-    <NextLink href={href} passHref legacyBehavior>
-      <Text {...linkProps} />
-    </NextLink>
-  )
-})
+    const linkProps = {
+      tag: 'a',
+      ref,
+      children,
+      href,
+      styleSheet: {
+        textDecoration: 'none',
+        ...colorVariantEnabled && {
+          color: currentColorSet.color,
+        },
+        hover: {
+          ...styleSheet?.hover,
+          ...colorVariantEnabled && {
+            color: currentColorSet.hover.color,
+          },
+        },
+        focus: {
+          ...styleSheet?.focus,
+          ...colorVariantEnabled && {
+            color: currentColorSet.focus.color,
+          },
+        },
+        ...styleSheet,
+      },
+      legacyBehavior: true,
+      ...props,
+    }
+    if (isIExternalLink) return (
+      <Text
+        {...{
+          target: '_blank',
+          ...linkProps,
+        }}
+      />
+    )
+
+
+    return (
+      <NextLink href={href} passHref legacyBehavior>
+        <Text {...linkProps} />
+      </NextLink>
+    )
+  })
 
 Link.defaultProps = {
   colorVariant: 'primary',
