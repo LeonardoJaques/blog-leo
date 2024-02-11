@@ -1,7 +1,7 @@
 import React from "react";
 import type { TemplateConfig } from "./withTemplateConfig";
 
-const TemplateConfigContext = React.createContext<TemplateConfig>({});
+export const TemplateConfigContext = React.createContext<TemplateConfig>({});
 
 interface TemplateConfigProviderProps {
   children: React.ReactNode;
@@ -16,4 +16,12 @@ export function TemplateConfigProvider({ value, children }: TemplateConfigProvid
 }
 
 
-export const useTemplateConfig = () => React.useContext(TemplateConfigContext);
+export const useTemplateConfig = () => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(
+      'useTemplateConfig is intended to be used in combination with withTemplateConfig HOC. ' +
+      'If you are not using withTemplateConfig HOC, consider using TemplateConfigContext directly.'
+    );
+  }
+  return React.useContext(TemplateConfigContext)
+};

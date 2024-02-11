@@ -53,7 +53,9 @@ Feed.Header = function FeedHeader() {
 
       >
 
-        <Image src={templateConfig.personal.avatar} alt={templateConfig.personal.avatarAlt}
+        <Image
+          src={templateConfig.personal.avatar}
+          alt={templateConfig.personal.avatarAlt}
           styleSheet={{
             width: { xs: '64px', sm: '80px', md: '96px', lg: '112px', xl: '128px' },
             height: { xs: '64px', sm: '80px', md: '96px', lg: '112px', xl: '128px' },
@@ -73,7 +75,7 @@ Feed.Header = function FeedHeader() {
             fullWidth
             colorVariant="primary"
             size="xl"
-            href="/"
+            href="/newsletter"
           >
             newsletter
           </Button>
@@ -114,7 +116,7 @@ Feed.Header = function FeedHeader() {
         </Box>
 
       </Box>
-      <Button.Base href="https://github.com/leonardojaques">
+      <Button.Base href={templateConfig.personal.socialNetworks.github}>
         <Text tag="h1" variant="heading4">
           {templateConfig?.personal?.name}
         </Text>
@@ -159,7 +161,6 @@ Feed.Posts = function FeedPosts({ posts }: FeedPostsProps) {
     <Box>
       <Text tag="h2" variant="heading4" styleSheet={{
         marginBottom: '32px',
-
       }}>
         Últimos posts
       </Text>

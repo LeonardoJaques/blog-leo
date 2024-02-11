@@ -7,7 +7,6 @@ export async function getStaticProps() {
   return {
     props: await withTemplateConfig({
       posts,
-      exemplo: 'exemplo de props com withTemplateConfig'
     }),
   }
 }
