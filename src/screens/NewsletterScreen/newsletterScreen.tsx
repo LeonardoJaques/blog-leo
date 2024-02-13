@@ -6,6 +6,7 @@ import Text from "@src/components/Text/text";
 import { BaseComponent } from "@src/theme/baseComponent";
 import ThemeProvider, { useTheme } from "@src/theme/themeProvider";
 
+const RESEND_API_KEY = process.env.RESEND_KEY
 
 function useForm({ initialValues }) {
   const [values, setValues] = React.useState(initialValues)
@@ -112,7 +113,8 @@ export default function NewsletterScreen() {
                 fetch('/api/newsletter/optin', {
                   method: 'POST',
                   headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${RESEND_API_KEY}`,
                   },
                   body: JSON.stringify({
                     emailNewsletter: form.values.emailNewsletter
@@ -132,7 +134,7 @@ export default function NewsletterScreen() {
               marginTop: '16px',
             }}
           >
-            Inscreva-se
+            cadastre-se
           </Button>
         </form>
       </Box>
