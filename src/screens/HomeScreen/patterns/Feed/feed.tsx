@@ -92,29 +92,16 @@ Feed.Header = function FeedHeader() {
             boxShadow: `0px 0px 16px 0px ${theme.colors.neutral.x200}`,
           }}
         />
-        <Box
-          styleSheet={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            gap: '16px',
-          }}
+        <Box>
 
-        >
-          <Button
-            fullWidth
-            colorVariant="primary"
-            size="xl"
-            href="/newsletter"
-          >
-            newsletter
-          </Button>
-
+          <Text tag="h1" variant="heading4">
+            Me paga um café?
+          </Text>
           <ImageNext
             src={cafe}
             alt="Café"
-            width={132}
-            height={132}
+            width={128}
+            height={128}
             onClick={notify}
             style={{
               cursor: 'pointer',
@@ -122,36 +109,21 @@ Feed.Header = function FeedHeader() {
               borderRadius: '16px',
               boxShadow: `0px 0px 16px 0px ${theme.colors.neutral.x200}`,
               borderColor: theme.colors.primary.x200,
+              justifyContent: 'center',
+              marginLeft: '16px',
+              marginTop: '16px',
             }}
           />
           <ToastContainer />
 
         </Box>
-        <Box
-          styleSheet={{
-            display: { xs: 'flex', sm: 'none' },
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            gap: '16px',
-          }}
-        >
-          <Button
-            fullWidth
-            colorVariant="primary"
-            size="xs"
-            href="/"
-          >
-            newsletter
-          </Button>
-        </Box>
-
       </Box>
       <Box
         styleSheet={{
           flexDirection: 'column',
           justifyContent: 'flex-start',
           gap: '16px',
-          marginTop: '-110px',
+          marginTop: '-60px',
         }}
       >
         <ButtonBase href={templateConfig.personal.socialNetworks.linkedin}
@@ -169,7 +141,7 @@ Feed.Header = function FeedHeader() {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             gap: '4px',
-            marginBottom: '25px'
+            marginBottom: '25px',
           }}
         >
 
