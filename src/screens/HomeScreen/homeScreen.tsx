@@ -22,7 +22,7 @@ function HomeScreen(props: HomeScreenProps) {
       }}
     >
       <Background />
-      <Menu />
+      {/* <Menu /> */}
       <Feed>
         <Feed.Header />
         <Feed.Posts posts={props.posts} />
