@@ -5,8 +5,14 @@ import Image from "@src/components/Image/image";
 import Text from "@src/components/Text/text";
 import { BaseComponent } from "@src/theme/baseComponent";
 import ThemeProvider, { useTheme } from "@src/theme/themeProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation'
+
+
 
 const RESEND_API_KEY = process.env.RESEND_KEY
+
 
 function useForm({ initialValues }) {
   const [values, setValues] = React.useState(initialValues)
@@ -58,6 +64,15 @@ function NewsLetterTextField(props: NewsLetterTextFieldProps) {
 
 export default function NewsletterScreen() {
   const theme = useTheme();
+  const router = useRouter()
+  const timeRedirect = 5000;
+
+  function handleRedirect() {
+    setTimeout(() => {
+      router.push('/');
+    }, timeRedirect);
+  }
+
   const form = useForm({
     initialValues: {
       emailNewsletter: ''
@@ -120,10 +135,46 @@ export default function NewsletterScreen() {
                     emailNewsletter: form.values.emailNewsletter
                   })
                 }).then(async (response) => {
-                  console.log(await response.json())
+                  if (response.status === 200) {
+                    toast.success('Email cadastrado com sucesso!', {
+                      position: "top-center",
+                      autoClose: timeRedirect,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+
+                    })
+                    handleRedirect()
+                  }
+                  if (response.status === 500) {
+                    toast.error('Email já cadastrado!', {
+                      position: "top-center",
+                      autoClose: timeRedirect,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    })
+                    handleRedirect()
+
+                  }
+
                 })
+
               } catch (error) {
-                console.error(error)
+                toast.error('Erro ao cadastrar email!', {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+                handleRedirect()
               }
             }
           }}
@@ -136,9 +187,10 @@ export default function NewsletterScreen() {
           >
             cadastre-se
           </Button>
+          <ToastContainer />
         </form>
       </Box>
-    </Box>
+    </Box >
 
   )
 }

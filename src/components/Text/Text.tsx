@@ -7,7 +7,7 @@ import { ThemeTypographyVariants } from "@src/theme/theme";
 interface TextProps {
   variant?: ThemeTypographyVariants;
   children?: React.ReactNode;
-  tag?: 'p' | 'li' | 'h1' | 'h2' | 'a' | string; 
+  tag?: 'p' | 'li' | 'h1' | 'h2' | 'a' | string;
   styleSheet?: StyleSheet;
 }
 
@@ -16,7 +16,7 @@ const Text = React.forwardRef(({
   styleSheet,
   variant,
   ...props }: TextProps, ref) => {
-  const theme = useTheme(); 
+  const theme = useTheme();
   const textVariant = theme.typography.variants[variant];
 
   return (
@@ -39,5 +39,8 @@ Text.defaultProps = {
   tag: 'p',
   variant: 'body1',
 }
+
+Text.displayName = 'Text'; // Add display name
+
 
 export default Text;

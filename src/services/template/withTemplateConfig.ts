@@ -9,6 +9,8 @@ export interface TemplateConfig {
     name?: string;
     avatar?: string;
     avatarAlt?: string;
+    email?: string;
+    cafe?: string;
     socialNetworks?: {
       youtube?: string;
       github?: string;

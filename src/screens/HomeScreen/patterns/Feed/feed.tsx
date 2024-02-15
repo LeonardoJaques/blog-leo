@@ -8,6 +8,15 @@ import Link from "@src/components/Link/link";
 import Icon from "@src/components/Icon/icon";
 import type { Post } from "@src/services/posts/postsService";
 import { FeedPost } from "./patterns/feedPost";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ImageNext from 'next/image'
+import cafe from '@public/images/mepagaumcafe.png'
+import ButtonBase from "@src/components/Button/buttonBase";
+
+
+
+
 
 
 interface FeedProps {
@@ -36,11 +45,31 @@ export default function Feed({ children }: FeedProps) {
 Feed.Header = function FeedHeader() {
   const theme = useTheme();
   const templateConfig = useTemplateConfig();
+  const notify = () => toast(`Obrigado por me comprar um café`, {
+    position: "top-center",
+    autoClose: 5000,
+    style: {
+      backgroundColor: theme.colors.primary.x500,
+      color: theme.colors.neutral.x000,
+      fontWeight: 'bold',
+      fontSize: '16px',
+      borderRadius: '8px',
+      boxShadow: `0px 0px 16px 0px ${theme.colors.neutral.x900}`,
+    },
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    icon: <Icon name="gitHub" size="md" />,
+  });
+
   return (
     <Box
       styleSheet={{
         borderBottom: `1px solid ${theme.colors.neutral.x100}`,
-        marginBottom: '32px',
+        marginBottom: '15px',
       }}
     >
       <Box
@@ -52,14 +81,15 @@ Feed.Header = function FeedHeader() {
         }}
 
       >
-
         <Image
           src={templateConfig.personal.avatar}
           alt={templateConfig.personal.avatarAlt}
           styleSheet={{
             width: { xs: '64px', sm: '80px', md: '96px', lg: '112px', xl: '128px' },
             height: { xs: '64px', sm: '80px', md: '96px', lg: '112px', xl: '128px' },
-            borderRadius: '50%'
+            borderRadius: '50%',
+            border: `1px solid ${theme.colors.neutral.x200}`,
+            boxShadow: `0px 0px 16px 0px ${theme.colors.neutral.x200}`,
           }}
         />
         <Box
@@ -79,14 +109,23 @@ Feed.Header = function FeedHeader() {
           >
             newsletter
           </Button>
-          <Button
-            fullWidth
-            colorVariant="neutral"
-            size="xl"
-            href="/"
-          >
-            Me paga um café!
-          </Button>
+
+          <ImageNext
+            src={cafe}
+            alt="Café"
+            width={132}
+            height={132}
+            onClick={notify}
+            style={{
+              cursor: 'pointer',
+              border: `1px solid ${theme.colors.neutral.x200}`,
+              borderRadius: '16px',
+              boxShadow: `0px 0px 16px 0px ${theme.colors.neutral.x200}`,
+              borderColor: theme.colors.primary.x200,
+            }}
+          />
+          <ToastContainer />
+
         </Box>
         <Box
           styleSheet={{
@@ -95,7 +134,6 @@ Feed.Header = function FeedHeader() {
             justifyContent: 'space-between',
             gap: '16px',
           }}
-
         >
           <Button
             fullWidth
@@ -105,48 +143,53 @@ Feed.Header = function FeedHeader() {
           >
             newsletter
           </Button>
-          <Button
-            fullWidth
-            colorVariant="neutral"
-            size="xs"
-            href="/"
-          >
-            Me paga um café!
-          </Button>
         </Box>
 
       </Box>
-      <Button.Base href={templateConfig.personal.socialNetworks.github}>
-        <Text tag="h1" variant="heading4">
-          {templateConfig?.personal?.name}
-        </Text>
-      </Button.Base>
-
       <Box
         styleSheet={{
-          flexDirection: 'row',
+          flexDirection: 'column',
           justifyContent: 'flex-start',
-          gap: '4px',
-          marginBottom: '5px',
+          gap: '16px',
+          marginTop: '-110px',
         }}
       >
+        <ButtonBase href={templateConfig.personal.socialNetworks.linkedin}
+          styleSheet={{
+            width: '170px',
+          }}
+        >
+          <Text tag="h1" variant="heading4">
+            {templateConfig?.personal?.name}
+          </Text>
+        </ButtonBase>
 
-        {Object.keys(templateConfig.personal.socialNetworks).map((key) => {
-          const socialNetwork = templateConfig.personal.socialNetworks[key];
-          if (socialNetwork) {
-            return (
-              <Link
-                key={key}
-                target="_blank"
-                href={socialNetwork}
-              >
-                <Icon name={key as any} />
-              </Link>
-            )
-          }
-          return null;
+        <Box
+          styleSheet={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            gap: '4px',
+            marginBottom: '25px'
+          }}
+        >
 
-        })}
+          {Object.keys(templateConfig.personal.socialNetworks).map((key) => {
+            const socialNetwork = templateConfig.personal.socialNetworks[key];
+            if (socialNetwork) {
+              return (
+                <Link
+                  key={key}
+                  target="_blank"
+                  href={socialNetwork}
+                >
+                  <Icon name={key as any} />
+                </Link>
+              )
+            }
+            return null;
+
+          })}
+        </Box>
       </Box>
     </Box>
   )

@@ -7,6 +7,12 @@ interface StyledBaseComponent {
   styleSheet?: StyleSheet;
   ref?: any
 }
+
+interface BaseComponentProps {
+  children?: React.ReactNode;
+  [key: string]: any;
+}
+
 const StyledBaseComponent = styled.div<StyledBaseComponent>`
   display: flex;
   flex-direction: column;
@@ -14,17 +20,15 @@ const StyledBaseComponent = styled.div<StyledBaseComponent>`
   flex-shrink: 0;
   ${({ styleSheet }) => parseStyleSheet(styleSheet)}
 `;
-interface BaseComponentProps {
-  children?: React.ReactNode;
-  [key: string]: any;
- }
 
-export const BaseComponent = React.forwardRef<unknown,BaseComponentProps>((props, ref) => {
+export const BaseComponent = React.forwardRef<unknown, BaseComponentProps>((props, ref) => {
   return (
     <StyledBaseComponent ref={ref} {...props} />
-  )
+  );
 });
+
+BaseComponent.displayName = "BaseComponent";
 
 BaseComponent.defaultProps = {
   styleSheet: {},
-}
+};

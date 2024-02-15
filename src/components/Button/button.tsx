@@ -11,6 +11,7 @@ interface ButtonsProps extends ButtonBaseProps {
   variant?: Variant;
   size?: ButtonSize;
   href?: string;
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -20,6 +21,7 @@ export default function Button({
   colorVariant,
   variant,
   size,
+  onClick,
   ...props
 
 }: ButtonsProps) {
@@ -39,6 +41,7 @@ export default function Button({
         ...styleSheet,
       }}
       {...props}
+      onClick={onClick}
     >
       {children}
     </ButtonBase>

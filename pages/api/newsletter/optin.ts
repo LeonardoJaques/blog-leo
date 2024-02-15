@@ -3,7 +3,6 @@ import { createClient } from "@supabase/supabase-js"
 import { Resend } from 'resend';
 import { EmailTemplate } from "@src/components/EmailTemplate/emailTemplate";
 
-
 // Supabase setup
 //=======
 const SUPABASE_URL = process.env.SUPABASE_URL
@@ -51,19 +50,19 @@ const controllerByMethod = {
       .insert([{ email, optin: true }])
 
     if (error) {
-      console.error(error)
+      console.log(error)
       res
         .status(httpStatus.internalServerError)
         .json({ message: "Error on insert" });
       return;
     }
-    await supabaseDb.auth.admin.createUser({ email })
+    // await supabaseDb.auth.admin.createUser({ email })
 
     try {
       await resend.emails.send({
-        from: "jaques.projetos@outlook.com",
+        from: "jaques.projetos@leonardojaques.com.br",
         to: ["jaques.projetos@outlook.com"],
-        subject: 'Hello world',
+        subject: 'Hello world dev',
         react: EmailTemplate({ firstName: 'teste' }),
       });
       res
