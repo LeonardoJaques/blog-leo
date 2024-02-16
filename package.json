@@ -12,7 +12,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "release": "rm -rf docs && rm -rf out && next build && mkdir docs && mv out docs"
+    "release": "rm -rf docs && rm -rf out && next build && mkdir docs && mv out/* docs"
   },
   "dependencies": {
     "@displaykit/responsive_styles": "^2.3.1",

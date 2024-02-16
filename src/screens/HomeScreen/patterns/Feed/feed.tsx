@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageNext from 'next/image'
 import ButtonBase from "@src/components/Button/buttonBase";
+import cafe from "@public/images/mepagaumcafe.png";
 
 
 
@@ -98,7 +99,7 @@ Feed.Header = function FeedHeader() {
           </Text>
 
           <ImageNext
-            src={"/images/mepagaumcafe.png"}
+            src={cafe}
             alt="Café"
             width={128}
             height={128}

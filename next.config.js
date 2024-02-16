@@ -2,7 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-   assetPrefix: "images",
+  //  assetPrefix: "images",
   output: 'export',
   images: {
     unoptimized: true,
