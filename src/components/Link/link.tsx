@@ -75,7 +75,9 @@ const Link = React.forwardRef(({
 
   return (
     <NextLink href={href} passHref legacyBehavior>
-      <Text {...props} />
+      <Text {...props} >
+        {children}
+      </Text>
     </NextLink>
   )
 })

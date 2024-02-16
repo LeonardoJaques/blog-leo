@@ -11,7 +11,6 @@ import { FeedPost } from "./patterns/feedPost";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageNext from 'next/image'
-import cafe from '@public/images/mepagaumcafe.png'
 import ButtonBase from "@src/components/Button/buttonBase";
 
 
@@ -97,8 +96,9 @@ Feed.Header = function FeedHeader() {
           <Text tag="h1" variant="heading4">
             Me paga um café?
           </Text>
+
           <ImageNext
-            src={cafe}
+            src={"/images/mepagaumcafe.png"}
             alt="Café"
             width={128}
             height={128}
@@ -190,6 +190,7 @@ Feed.Posts = function FeedPosts({ posts }: FeedPostsProps) {
             tags={tags}
             url={url}
             image={image}
+            content={content}
           />
         )
       })}

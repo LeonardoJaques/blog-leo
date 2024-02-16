@@ -5,6 +5,7 @@ import Text from "@src/components/Text/text";
 import Link from "@src/components/Link/link";
 import Button from "@src/components/Button/button";
 import Image from "@src/components/Image/image";
+import Post from "./post";
 
 interface FeedPostProps {
   title: string;
@@ -13,8 +14,9 @@ interface FeedPostProps {
   date: string;
   tags: string[];
   image?: string;
+  content?: string;
 }
-export function FeedPost({ title, excerpt, date, tags, url, image }: FeedPostProps) {
+export function FeedPost({ title, excerpt, date, tags, url, image, content }: FeedPostProps) {
   const theme = useTheme();
   const postDate = new Date(date)
     .toLocaleDateString('pt-BR', {
@@ -87,7 +89,7 @@ export function FeedPost({ title, excerpt, date, tags, url, image }: FeedPostPro
             styleSheet={{
               color: theme.colors.neutral.x800,
               backgroundColor: theme.colors.neutral.x100,
-              borderRadius: "1000px",
+              borderRadius: "100px",
               padding: '6px 8px',
               marginBottom: '12px',
               hover: {
@@ -123,7 +125,9 @@ export function FeedPost({ title, excerpt, date, tags, url, image }: FeedPostPro
           />
 
         </Button.Base>
+
       )}
+      <Post>{content}</Post>
     </Box>
   )
 }
